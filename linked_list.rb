@@ -10,7 +10,7 @@ class LinkedList
   end
 
   def append(value)
-    if size.zero?
+    if @size.zero?
       @head = Node.new(value)
       @tail = @head
     else
@@ -22,7 +22,7 @@ class LinkedList
   end
 
   def prepend(value)
-    if size.zero?
+    if @size.zero?
       @head = Node.new(value)
       @tail = @head
     else
@@ -32,7 +32,13 @@ class LinkedList
     @size += 1
   end
 
-  def at(index); end
+  def at(index)
+    return unless index.between?(0, @size - 1)
+
+    node = @head
+    index.times { node = node.next_node }
+    node
+  end
 
   def pop; end
 
@@ -46,3 +52,7 @@ class LinkedList
 
   def remove_at(value, index); end
 end
+
+@list = LinkedList.new
+num = 5
+num.times { |number| @list.append(number) }
