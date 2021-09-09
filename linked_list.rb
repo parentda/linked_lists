@@ -62,7 +62,17 @@ class LinkedList
     false
   end
 
-  def find(value); end
+  def find(value)
+    return if @size.zero?
+
+    node = @head
+    size.times do |number|
+      return number if node.value == value
+
+      node = node.next_node
+    end
+    nil
+  end
 
   def to_s; end
 
