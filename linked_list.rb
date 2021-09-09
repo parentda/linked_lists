@@ -50,7 +50,17 @@ class LinkedList
     last_value
   end
 
-  def contains?(value); end
+  def contains?(value)
+    return false if @size.zero?
+
+    node = @head
+    size.times do
+      return true if node.value == value
+
+      node = node.next_node
+    end
+    false
+  end
 
   def find(value); end
 
