@@ -54,7 +54,7 @@ class LinkedList
     return false if @size.zero?
 
     node = @head
-    size.times do
+    @size.times do
       return true if node.value == value
 
       node = node.next_node
@@ -66,7 +66,7 @@ class LinkedList
     return if @size.zero?
 
     node = @head
-    size.times do |number|
+    @size.times do |number|
       return number if node.value == value
 
       node = node.next_node
@@ -74,7 +74,16 @@ class LinkedList
     nil
   end
 
-  def to_s; end
+  def to_s
+    formatted_list = ''
+    node = @head
+    @size.times do
+      formatted_list << "( #{node.value} ) -> "
+
+      node = node.next_node
+    end
+    puts formatted_list << 'nil'
+  end
 
   def insert_at(value, index); end
 
