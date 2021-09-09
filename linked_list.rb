@@ -40,7 +40,15 @@ class LinkedList
     node
   end
 
-  def pop; end
+  def pop
+    return if @size.zero?
+
+    last_value = @tail.value
+    @tail = at(@size - 2)
+    @tail.next_node = nil
+    @size -= 1
+    last_value
+  end
 
   def contains?(value); end
 
