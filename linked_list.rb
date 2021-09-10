@@ -19,6 +19,7 @@ class LinkedList
       @tail = node
     end
     @size += 1
+    to_s
   end
 
   def prepend(value)
@@ -30,6 +31,7 @@ class LinkedList
       @head = node
     end
     @size += 1
+    to_s
   end
 
   def at(index)
@@ -47,6 +49,7 @@ class LinkedList
     @tail = at(@size - 2)
     @tail.next_node = nil
     @size -= 1
+    to_s
     last_value
   end
 
@@ -85,9 +88,23 @@ class LinkedList
     puts formatted_list << 'nil'
   end
 
-  def insert_at(value, index); end
+  def insert_at(value, index)
+    return if index.negative?
+    return prepend(value) if index.zero?
 
-  def remove_at(value, index); end
+    (index - @size).times { append(nil) } if index > @size
+    return append(value) if index == @size
+
+    prev_node = at(index - 1)
+    curr_node = Node.new(value, prev_node.next_node)
+    prev_node.next_node = curr_node
+    @size += 1
+    to_s
+  end
+
+  def remove_at(value, index)
+    @size -= 1
+  end
 end
 
 @list = LinkedList.new
