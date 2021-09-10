@@ -89,10 +89,8 @@ class LinkedList
   end
 
   def insert_at(value, index)
-    return if index.negative?
+    return puts 'Error: index out of range' unless index.between?(0, @size)
     return prepend(value) if index.zero?
-
-    (index - @size).times { append(nil) } if index > @size
     return append(value) if index == @size
 
     prev_node = at(index - 1)
@@ -102,8 +100,20 @@ class LinkedList
     to_s
   end
 
-  def remove_at(value, index)
+  def remove_at(index)
+    return puts 'Error: index out of range' unless index.between?(0, @size - 1)
+
+    if index.zero?
+      @head = at(index + 1)
+      @tail = @head if @size == 1
+    else
+      prev_node = at(index - 1)
+      next_node = at(index + 1)
+      prev_node.next_node = next_node
+      @tail = prev_node if index == @size - 1
+    end
     @size -= 1
+    to_s
   end
 end
 
