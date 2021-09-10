@@ -116,7 +116,3 @@ class LinkedList
     to_s
   end
 end
-
-@list = LinkedList.new
-num = 5
-num.times { |number| @list.append(number) }
